@@ -1,6 +1,11 @@
 <template>
-	<div class="home"><h1>Home</h1></div>
-	<PostList :posts="posts" />
+	<div class="home">
+		<h1>Home</h1>
+		<button @click="showPosts = !showPosts">
+			Toggle Posts
+		</button>
+		<PostList v-if="showPosts" :posts="posts" />
+	</div>
 </template>
 
 <script lang="ts">
@@ -26,7 +31,9 @@ export default defineComponent({
 			},
 		]);
 
-		return { posts };
+		const showPosts = ref(true);
+
+		return { posts, showPosts };
 	},
 });
 </script>
