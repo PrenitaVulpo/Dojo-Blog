@@ -3,25 +3,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
 	name: "Home",
 	components: {},
 	setup() {
-		console.log("setup");
-	},
-	beforeCreate() {
-		console.log("creating");
-	},
-	created() {
-		console.log("created");
-	},
-	beforeMount() {
-		console.log("mounting");
-	},
-	mounted() {
-		console.log("mounted");
+		const posts = ref([
+			{ title: "welcome to the blog", body: "lorem ipsum", id: 1 },
+			{ title: "top css 5 skills", body: "lorem ipsum", id: 2 },
+		]);
 	},
 });
 </script>
