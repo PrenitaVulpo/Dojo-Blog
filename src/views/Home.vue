@@ -13,6 +13,8 @@ export default defineComponent({
 			{ title: "welcome to the blog", body: "lorem ipsum", id: 1 },
 			{ title: "top css 5 skills", body: "lorem ipsum", id: 2 },
 		]);
+
+		return { posts };
 	},
 });
 </script>
