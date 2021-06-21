@@ -1,12 +1,12 @@
 <template>
 	<div class="post">
-		<h1>{{ post.title }}</h1>
-		<p>{{ post.body }}</p>
+		<h2>{{ post.title }}</h2>
+		<p>{{ snippet }}</p>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { computed, defineComponent, PropType } from "vue";
 import Post from "@/TS/Interfaces/Post";
 
 export default defineComponent({
@@ -16,7 +16,13 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	// setup() {},
+	setup(props) {
+		const snippet = computed(() => {
+			return props.post.body.substring(0, 100) + "...";
+		});
+
+		return { snippet };
+	},
 });
 </script>
 

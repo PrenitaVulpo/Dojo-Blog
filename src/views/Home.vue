@@ -1,5 +1,5 @@
 <template>
-	<div class="home"></div>
+	<div class="home"><h1>Home</h1></div>
 	<PostList :posts="posts" />
 </template>
 
