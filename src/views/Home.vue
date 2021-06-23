@@ -5,7 +5,9 @@
 		<div v-if="posts.length">
 			<PostList v-if="showPosts" :posts="posts" />
 		</div>
-		<div v-else>...loading</div>
+		<div v-else>
+			<Spinner />
+		</div>
 		<button @click="showPosts = !showPosts">Toggle Posts</button>
 	</div>
 </template>
@@ -14,11 +16,13 @@
 import { defineComponent, ref } from "vue";
 import getPosts from "@/composables/getPosts";
 import PostList from "../components/PostList.vue";
+import Spinner from "@/components/Spinner.vue";
 
 export default defineComponent({
 	name: "Home",
 	components: {
 		PostList,
+		Spinner,
 	},
 	setup() {
 		const { posts, errorStatus, errorMessage, load } = getPosts();
