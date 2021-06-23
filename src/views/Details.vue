@@ -31,9 +31,9 @@ export default defineComponent({
 });
 </script>
 <style>
-.post{
+.post {
 	max-width: 75rem;
-	margin 0 auto;
+	margin: 0 auto;
 }
 .post p {
 	color: #444;
