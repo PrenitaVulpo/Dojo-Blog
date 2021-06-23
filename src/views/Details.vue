@@ -30,3 +30,17 @@ export default defineComponent({
 	},
 });
 </script>
+<style>
+.post{
+	max-width: 75rem;
+	margin 0 auto;
+}
+.post p {
+	color: #444;
+	line-height: 1.5em;
+	margin-top: 2.5rem;
+}
+.pre {
+	white-space: pre-wrap;
+}
+</style>
