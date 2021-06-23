@@ -2,14 +2,14 @@ import Post from "@/TS/Interfaces/Post";
 import { Ref, ref } from "vue";
 
 interface returnProps {
-	post: Ref<Post>;
+	post: Ref<Post | undefined>;
 	errorStatus: Ref<boolean>;
 	errorMessage: Ref<string>;
 	load(): Promise<void>;
 }
 
 const getPost = (id: number): returnProps => {
-	const post = ref({} as Post);
+	const post = ref<Post | undefined>();
 	const errorStatus = ref(false);
 	const errorMessage = ref("");
 

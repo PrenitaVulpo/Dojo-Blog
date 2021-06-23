@@ -5,14 +5,19 @@
 		<p class="pre">{{ post.body }}</p>
 		<span v-for="tag in post.tags" :key="tag"> #{{ tag }} </span>
 	</div>
+	<div v-else>
+		<Spinner />
+	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import getPost from "@/composables/getPost";
+import Spinner from "@/components/Spinner.vue";
 
 export default defineComponent({
 	name: "Details",
+	components: { Spinner },
 	props: {
 		id: {
 			type: String,
