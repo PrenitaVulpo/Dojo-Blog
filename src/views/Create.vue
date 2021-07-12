@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
 	setup() {
@@ -27,6 +28,8 @@ export default defineComponent({
 		const body = ref("");
 		const tag = ref("");
 		const tags = ref<string[]>([]);
+
+		const router = useRouter();
 
 		const handleKeydown = () => {
 			tag.value = tag.value.replace(/\s/, ""); //removes whitespaces
@@ -48,6 +51,8 @@ export default defineComponent({
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(post),
 			});
+
+			router.push({ name: "Home" });
 		};
 
 		return { title, body, tag, tags, handleKeydown, handleSubmit };
