@@ -4,13 +4,16 @@
 			<h3>{{ post.title }}</h3>
 		</router-link>
 		<p>{{ snippet }}</p>
-		<span v-for="tag in post.tags" :key="tag"> #{{ tag }} </span>
+		<span v-for="tag in post.tags" :key="tag" :onclick="redirectToTag(tag)">
+			#{{ tag }}
+		</span>
 	</div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
 import Post from "@/TS/Interfaces/Post";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
 	props: {
@@ -24,7 +27,11 @@ export default defineComponent({
 			return props.post.body.substring(0, 100) + "...";
 		});
 
-		return { snippet };
+		const router = useRouter();
+
+		const redirectToTag = (tag: string) => router.replace(`tag/${tag}`);
+
+		return { snippet, redirectToTag };
 	},
 });
 </script>
