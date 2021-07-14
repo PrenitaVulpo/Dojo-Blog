@@ -1,7 +1,8 @@
+import Post from "@/TS/Interfaces/Post";
 import { Ref, ref } from "vue";
 
 interface returnProps {
-	posts: Ref<never[]>;
+	posts: Ref<Post[]>;
 	errorStatus: Ref<boolean>;
 	errorMessage: Ref<string>;
 	load(): Promise<void>;
