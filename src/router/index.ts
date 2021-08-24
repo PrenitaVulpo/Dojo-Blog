@@ -25,6 +25,7 @@ const routes: Array<RouteRecordRaw> = [
 		path: "/tag/:tag",
 		name: "Tag",
 		component: Tag,
+		props: true,
 	},
 ];
 
