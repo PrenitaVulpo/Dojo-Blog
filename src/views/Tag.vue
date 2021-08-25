@@ -1,36 +1,44 @@
 <template>
-	<PostList v-if="filteredPosts" :posts="filteredPosts" />
+	<div v-if="errorStatus">{{ errorMessage }}</div>
+	<div v-if="posts.length">
+		<PostList :posts="filteredPosts" />
+	</div>
+	<div v-else>
+		<Spinner />
+	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import getPosts from "@/composables/getPosts";
-import { useRoute } from "vue-router";
 import PostList from "../components/PostList.vue";
-// import Post from "../TS/Interfaces/Post";
+import Spinner from "../components/Spinner.vue";
+import Post from "../TS/Interfaces/Post";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
 	components: {
 		PostList,
+		Spinner,
 	},
-	// props: {
-	// 	tag: {
-	// 		type: String,
-	// 		required: true,
-	// 	},
-	// },
 	setup() {
-		const { posts, load } = getPosts();
+		const { posts, load, errorStatus, errorMessage } = getPosts();
 		load();
+
 		const route = useRoute();
 
-		const filteredPosts = posts.value.filter((post) =>
-			post.tags.includes(route.params.tag),
-		);
+		return { posts, route, errorStatus, errorMessage };
+	},
+	computed: {
+		filteredPosts(): Post[] {
+			const result = this.posts.filter((post) =>
+				post.tags.includes(this.$route.params.tag as string),
+			);
 
-		console.log(filteredPosts);
+			console.log(result);
 
-		return { filteredPosts };
+			return result;
+		},
 	},
 });
 </script>
