@@ -9,6 +9,7 @@
 		<div v-else>
 			<Spinner />
 		</div>
+		<p></p>
 		<TagCloud :posts="posts" />
 	</div>
 </template>
