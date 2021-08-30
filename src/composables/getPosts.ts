@@ -20,7 +20,15 @@ const getPosts = (): returnProps => {
 			const querySnapshot = await getDocs(
 				collection(projectFirestore, "posts"),
 			);
-			console.log(querySnapshot);
+
+			posts.value = querySnapshot.docs.map((doc) => {
+				return {
+					id: doc.id,
+					title: doc.data().title,
+					body: doc.data().body,
+					tags: doc.data().tags,
+				};
+			});
 		} catch (error) {
 			errorStatus.value = true;
 			errorMessage.value = error.message;

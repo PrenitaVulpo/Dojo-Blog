@@ -1,19 +1,21 @@
-import firebase from "firebase/app";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
 	apiKey: process.env.APP_API_KEY,
 	authDomain: process.env.APP_AUTH_DOMAIN,
-	projectId: process.env.APP_PROJECT_ID,
+	projectId: "udemy-vue-firebase-6f7a4",
 	storageBucket: process.env.APP_STORAGE_BUCKET,
 	messagingSenderId: process.env.APP_MESSAGING_SENDER_ID,
 	appId: process.env.APP_ID,
 };
 
-//initiate firebase
-firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 //init firestore service
 const projectFirestore = getFirestore();
 
-export { projectFirestore };
+export { projectFirestore, app };
