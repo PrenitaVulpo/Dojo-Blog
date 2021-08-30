@@ -26,6 +26,8 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
+		console.log("postagens", props.posts);
+
 		const { tags } = getTags(props.posts);
 		console.log(tags.value);
 		return { tags };

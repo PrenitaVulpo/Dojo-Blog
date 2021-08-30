@@ -9,7 +9,7 @@ interface returnProps {
 }
 
 const getPosts = (): returnProps => {
-	const posts = ref([]);
+	const posts = ref<Post[]>([]);
 	const errorStatus = ref(false);
 	const errorMessage = ref("");
 

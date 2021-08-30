@@ -5,12 +5,12 @@
 		<button @click="showPosts = !showPosts">Toggle Posts</button>
 		<div v-if="posts.length">
 			<PostList v-if="showPosts" :posts="posts" />
+			<TagCloud :posts="posts" />
 		</div>
 		<div v-else>
 			<Spinner />
 		</div>
-		<p></p>
-		<TagCloud :posts="posts" />
+		<div v-if="posts.lenght"></div>
 	</div>
 </template>
 
@@ -33,9 +33,11 @@ export default defineComponent({
 
 		load();
 
+		const cloudPosts = ref([...posts.value]);
+
 		const showPosts = ref(true);
 
-		return { posts, showPosts, errorMessage, errorStatus };
+		return { cloudPosts, posts, showPosts, errorMessage, errorStatus };
 	},
 });
 </script>
