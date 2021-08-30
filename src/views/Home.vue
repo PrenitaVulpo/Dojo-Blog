@@ -3,7 +3,7 @@
 		<h1>Home</h1>
 		<div v-if="errorStatus">{{ errorMessage }}</div>
 		<button @click="showPosts = !showPosts">Toggle Posts</button>
-		<div v-if="posts.length">
+		<div v-if="posts.length" class="layout">
 			<PostList v-if="showPosts" :posts="posts" />
 			<TagCloud :posts="posts" />
 		</div>
@@ -47,5 +47,10 @@ export default defineComponent({
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 10px;
+}
+.layout {
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	gap: 1.25rem;
 }
 </style>

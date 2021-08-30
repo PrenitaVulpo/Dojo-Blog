@@ -26,13 +26,31 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		console.log("postagens", props.posts);
-
 		const { tags } = getTags(props.posts);
-		console.log(tags.value);
 		return { tags };
 	},
 });
 </script>
 
-<style></style>
+<style>
+.tag-cloud {
+	padding: 0.675rem;
+}
+.tag-cloud h3 {
+	border-bottom: 1px solid #eee;
+	padding: 1rem 0.5rem;
+	color: #444;
+}
+.tag-cloud div {
+	display: inline-block;
+	padding: 0.675rem;
+}
+.tag-cloud a {
+	color: rgb(155, 152, 152);
+	text-decoration: none;
+}
+.tag-cloud a.router-link-active {
+	color: #ff8800;
+	font-weight: 700;
+}
+</style>

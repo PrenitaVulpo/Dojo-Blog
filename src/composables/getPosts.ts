@@ -25,7 +25,6 @@ const getPosts = (): returnProps => {
 				throw new Error("no data avaliable");
 			}
 			posts.value = await data.json();
-			console.log(data);
 		} catch (error) {
 			errorStatus.value = true;
 			errorMessage.value = error.message;
