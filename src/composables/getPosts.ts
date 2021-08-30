@@ -1,5 +1,7 @@
 import Post from "@/TS/Interfaces/Post";
 import { Ref, ref } from "vue";
+import { projectFirestore } from "@/Firebase/config";
+import { collection, getDocs } from "firebase/firestore";
 
 interface returnProps {
 	posts: Ref<Post[]>;
@@ -15,16 +17,10 @@ const getPosts = (): returnProps => {
 
 	const load = async () => {
 		try {
-			//simulate delay
-			await new Promise((resolve) => {
-				setTimeout(resolve, 2000);
-			});
-
-			const data = await fetch("http://localhost:3000/posts");
-			if (!data.ok) {
-				throw new Error("no data avaliable");
-			}
-			posts.value = await data.json();
+			const querySnapshot = await getDocs(
+				collection(projectFirestore, "posts"),
+			);
+			console.log(querySnapshot);
 		} catch (error) {
 			errorStatus.value = true;
 			errorMessage.value = error.message;
