@@ -1,5 +1,7 @@
 import Post from "@/TS/Interfaces/Post";
 import { Ref, ref } from "vue";
+import { projectFirestore } from "@/Firebase/config";
+import { collection, getDoc, doc } from "firebase/firestore";
 
 interface returnProps {
 	post: Ref<Post | undefined>;
@@ -8,24 +10,27 @@ interface returnProps {
 	load(): Promise<void>;
 }
 
-const getPost = (id: number): returnProps => {
+const getPost = (id: string): returnProps => {
 	const post = ref<Post | undefined>();
 	const errorStatus = ref(false);
 	const errorMessage = ref("");
+	const docRef = doc(projectFirestore, "posts", id);
 
 	const load = async () => {
 		try {
-			//simulate delay
-			await new Promise((resolve) => {
-				setTimeout(resolve, 2000);
-			});
+			const docSnap = await getDoc(docRef);
 
-			const data = await fetch("http://localhost:3000/posts/" + id);
-			if (!data.ok) {
-				throw new Error("post not avaliable");
+			if (docSnap.exists()) {
+				post.value = {
+					id,
+					title: docSnap.data().title,
+					body: docSnap.data().body,
+					tags: docSnap.data().tags,
+				};
+			} else {
+				// doc.data() will be undefined in this case
+				console.log("No such document!");
 			}
-			post.value = await data.json();
-			console.log(data);
 		} catch (error) {
 			errorStatus.value = true;
 			errorMessage.value = error.message;

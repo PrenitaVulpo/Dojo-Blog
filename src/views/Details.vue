@@ -25,9 +25,7 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		const { post, errorMessage, errorStatus, load } = getPost(
-			parseInt(props.id),
-		);
+		const { post, errorMessage, errorStatus, load } = getPost(props.id);
 
 		load();
 
